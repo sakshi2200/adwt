@@ -1,0 +1,178 @@
+q1
+  
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Information Form</title>
+    <style>
+        /* Body and page layout */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: skyblue;
+            color: red;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Header styling */
+        header {
+            text-align: center;
+            background-color: skyblue;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        /* Form container to display in a line */
+        .form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: skyblue;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /* Form fields styling */
+        label {
+            font-size: 16px;
+            margin-right: 20px;
+            display: inline-block;
+            width: 150px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="password"],
+        textarea,
+        select {
+            padding: 10px;
+            width: 200px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Radio buttons and checkbox styling */
+        .radio-group,
+        .language-group {
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .radio-group input[type="radio"],
+        .language-group input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        /* Submit and Reset buttons */
+        input[type="submit"],
+        input[type="reset"] {
+            background-color: grey;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #70c5f5;
+        }
+
+        /* Form layout in one line */
+        .form-fields {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        /* Additional spacing for some form elements */
+        .form-fields > div {
+            margin-right: 20px;
+        }
+
+        /* Styling for address (textarea) */
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Entry Form</h1>
+    </header>
+
+    <!-- Form Section -->
+    <div class="form-container">
+        <form action="#" method="POST">
+            <div class="form-fields">
+                <!-- Name -->
+                <div>
+                    <label for="name">Enter your Name:</label>
+                    <input type="text" id="name" name="name" required placeholder="Your Name">
+                </div>
+
+                <!-- Age -->
+                <div>
+                    <label for="age">Enter your Age:</label>
+                    <input type="number" id="age" name="age" required placeholder="Your Age">
+                </div>
+
+                <!-- Sex (Radio Buttons) -->
+                <div class="radio-group">
+                    <label>Sex:</label>
+                    <input type="radio" id="male" name="sex" value="Male" required><label for="male">Male</label><br>
+                    <input type="radio" id="female" name="sex" value="Female"><label for="female">Female</label><br>
+                </div>
+            </div>
+
+            <div class="form-fields">
+                <!-- Address -->
+                <div>
+                    <label for="address">Enter your Address:</label>
+                    <textarea id="address" name="address" placeholder="Your Address"></textarea>
+                </div>
+
+                <!-- Nationality (Dropdown) -->
+                <div>
+                    <label for="nationality">Select Nationality:</label>
+                    <select id="nationality" name="nationality" required>
+                        <option value="">Select Nationality</option>
+                        <option value="Indian">Indian</option>
+                        <option value="American">American</option>
+                        <option value="Canadian">Canadian</option>
+                        <option value="Australian">Australian</option>
+                    </select>
+                </div>
+
+                <!-- Languages Known (Checkbox with square radio buttons) -->
+                <div class="language-group">
+                    <label>Languages Known:</label>
+                    <input type="radio" id="c" name="languages" value="C"><label for="c">C</label><br>
+                    <input type="radio" id="cpp" name="languages" value="C++"><label for="cpp">C++</label><br>
+                    <input type="radio" id="java" name="languages" value="Java"><label for="java">Java</label><br>
+                </div>
+            </div>
+
+            <!-- Submit and Reset Buttons -->
+            <div style="text-align: center;">
+                <input type="submit" value="Submit">
+                <input type="reset" value="Reset">
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

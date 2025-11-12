@@ -1,0 +1,116 @@
+q1
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Tile and Rotation</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            position: relative;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        /* Tile the image as background */
+        .image-tiles {
+            width: 100%;
+            height: 400px;
+            background-image: url('your-image-path.jpg'); /* Replace with your image path */
+            background-repeat: repeat;
+            background-size: 150px 150px; /* Tile size */
+        }
+
+        /* Rotation */
+        .rotate-container {
+            margin-top: 20px;
+        }
+
+        .rotate-image {
+            width: 150px;
+            height: 150px;
+            background-image: url('your-image-path.jpg'); /* Replace with your image path */
+            background-size: cover;
+            transition: transform 0.5s ease;
+        }
+
+        /* Rotate clockwise */
+        .rotate-clockwise {
+            transform: rotate(90deg);
+        }
+
+        /* Rotate anticlockwise */
+        .rotate-anticlockwise {
+            transform: rotate(-90deg);
+        }
+
+        /* Buttons for rotating */
+        .rotate-buttons {
+            margin-top: 20px;
+        }
+
+        .rotate-buttons button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+
+        .rotate-buttons button:hover {
+            background-color: #45a049;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Image Tile and Rotation</h1>
+
+    <!-- Image Tiles Section -->
+    <div class="container">
+        <h2>Image Tiles</h2>
+        <div class="image-tiles"></div>
+    </div>
+
+    <!-- Rotate Image Section -->
+    <div class="rotate-container">
+        <h2>Rotate Image</h2>
+        <div class="rotate-image" id="image"></div>
+
+        <!-- Buttons to Rotate the Image -->
+        <div class="rotate-buttons">
+            <button onclick="rotateClockwise()">Rotate Clockwise</button>
+            <button onclick="rotateAnticlockwise()">Rotate Anticlockwise</button>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript functions to rotate the image
+        function rotateClockwise() {
+            document.getElementById("image").classList.add("rotate-clockwise");
+            document.getElementById("image").classList.remove("rotate-anticlockwise");
+        }
+
+        function rotateAnticlockwise() {
+            document.getElementById("image").classList.add("rotate-anticlockwise");
+            document.getElementById("image").classList.remove("rotate-clockwise");
+        }
+    </script>
+
+</body>
+</html>
+  

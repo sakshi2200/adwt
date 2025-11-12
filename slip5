@@ -1,0 +1,101 @@
+q1
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Persons</title>
+    <style>
+        table {
+            width: 50%;
+            border: 1px solid black;
+            border-radius: 8px;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            font-weight: normal; /* Remove bold from header */
+        }
+    </style>
+</head>
+<body>
+
+    <table>
+        <caption>List of Persons</caption>
+        <thead>
+            <tr>
+                <th>Srno</th>
+                <th>Person Name</th>
+                <th>Age</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
+
+
+q2
+
+           
+  // Inserting documents into the Employees collection
+db.employees.insertMany([
+  { "_id": "emp1", "name": "Mr. Patil", "designation": "Software Engineer", "email": "patil@company.com" },
+  { "_id": "emp2", "name": "Mr. Sharma", "designation": "Project Manager", "email": "sharma@company.com" },
+  { "_id": "emp3", "name": "Ms. Desai", "designation": "Business Analyst", "email": "desai@company.com" },
+  { "_id": "emp4", "name": "Mr. Gupta", "designation": "Software Engineer", "email": "gupta@company.com" },
+  { "_id": "emp5", "name": "Mr. Reddy", "designation": "QA Engineer", "email": "reddy@company.com" }
+]);
+
+// Inserting documents into the Projects collection
+db.projects.insertMany([
+  { "_id": "proj1", "project_name": "Project A", "project_type": "Development", "start_date": "2024-01-01", "end_date": "2024-06-30", "employee_ids": ["emp1", "emp2", "emp3"] },
+  { "_id": "proj2", "project_name": "Project B", "project_type": "Research", "start_date": "2024-03-01", "end_date": "2024-08-31", "employee_ids": ["emp2", "emp4", "emp5"] },
+  { "_id": "proj3", "project_name": "Project C", "project_type": "Development", "start_date": "2024-04-01", "end_date": "2024-09-30", "employee_ids": ["emp1", "emp4"] },
+  { "_id": "proj4", "project_name": "Project D", "project_type": "Testing", "start_date": "2024-02-15", "end_date": "2024-06-15", "employee_ids": ["emp1", "emp5"] },
+  { "_id": "proj5", "project_name": "Project E", "project_type": "Development", "start_date": "2024-05-01", "end_date": "2024-12-01", "employee _ids": ["emp3", "emp4"]})
+A.	List all names of projects where Project_type =…..  
+  db.projects.find({ "project_type": "Development" }, { "project_name":                 1, "_id": 0 })      
+
+B.	  List all the projects with duration greater than 3 months               
+db.projects.find({
+  $expr: {
+    $gt: [
+      { $subtract: [ { $dateFromString: { dateString: "$end_date" } }, { $dateFromString: { dateString: "$start_date" } } ] },
+      7884000000  )   ]  }})            
+C.	Count no. of employees working on ……..project
+db.projects.aggregate([
+  { $match: { "project_name": "Project A" } },
+  { $project: { _id: 0, project_name: 1, employee_count: { $size: "$employee_ids" } } }])
+D.	List the names of projects on which Mr. Patil is working
+db.projects.find({ "employee_ids": "emp1" }, { "project_name": 1, "_id": 0 })
+
+      	 

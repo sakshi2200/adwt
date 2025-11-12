@@ -1,0 +1,148 @@
+q1
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Text on Hover</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .three-d-text {
+            font-family: 'Arial', sans-serif; /* Choose a font */
+            font-size: 60px; /* Text size */
+            font-weight: bold;
+            color: #333; /* Initial text color */
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        .three-d-text:hover {
+            color: #ff6347; /* Change text color on hover */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), 0 0 25px rgba(255, 99, 71, 0.7), 0 0 5px rgba(255, 99, 71, 0.7); /* 3D shadow effect */
+            transform: translateY(-5px) translateX(5px); /* Creates a slight lift effect */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="three-d-text">
+        Hover Over Me!
+    </div>
+
+</body>
+</html>
+
+
+q2
+
+db.customers.insertMany([
+    {
+        "first_name": "Sam",
+        "last_name": "Brown",
+        "email": "sam@example.com",
+        "accounts": ["acc1", "acc2"]
+    },
+    {
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "john@example.com",
+        "accounts": ["acc3"]
+    },
+    {
+        "first_name": "Sophie",
+        "last_name": "Taylor",
+        "email": "sophie@example.com",
+        "accounts": ["acc4"]
+    },
+    {
+        "first_name": "Sarah",
+        "last_name": "Williams",
+        "email": "sarah@example.com",
+        "accounts": ["acc5"]
+    },
+    {
+        "first_name": "Samson",
+        "last_name": "Lee",
+        "email": "samson@example.com",
+        "accounts": ["acc6"]
+    }
+]);
+
+db.accounts.insertMany([
+    {
+        "account_id": "acc1",
+        "account_type": "Saving",
+        "balance": 5000,
+        "branch": "Downtown Branch",
+        "opened_date": "2020-01-01",
+        "customer_email": "sam@example.com"
+    },
+    {
+        "account_id": "acc2",
+        "account_type": "Loan",
+        "balance": 20000,
+        "branch": "Main Branch",
+        "opened_date": "2021-03-01",
+        "customer_email": "sam@example.com"
+    },
+    {
+        "account_id": "acc3",
+        "account_type": "Saving",
+        "balance": 1000,
+        "branch": "Main Branch",
+        "opened_date": "2019-06-15",
+        "customer_email": "john@example.com"
+    },
+    {
+        "account_id": "acc4",
+        "account_type": "Loan",
+        "balance": 5000,
+        "branch": "Downtown Branch",
+        "opened_date": "2020-01-01",
+        "customer_email": "sophie@example.com"
+    },
+    {
+        "account_id": "acc5",
+        "account_type": "Saving",
+        "balance": 2500,
+        "branch": "Downtown Branch",
+        "opened_date": "2021-03-01",
+        "customer_email": "sarah@example.com"
+    },
+    {
+        "account_id": "acc6",
+        "account_type": "Saving",
+        "balance": 3000,
+        "branch": "Main Branch",
+        "opened_date": "2020-05-10",
+        "customer_email": "samson@example.com"
+    }
+]);
+
+db.customers.find({ "first_name": /^S/ }, { "first_name": 1, "last_name": 1 })
+
+db.customers.find({
+    "accounts.opened_date": "2020-01-01",
+    "accounts.branch": "Downtown Branch"
+}, { "first_name": 1, "last_name": 1 })
+
+
+db.customers.find({
+    "accounts.account_type": "Saving"
+}, { "first_name": 1, "last_name": 1 })
+
+
+db.accounts.find({
+    "account_type": "Loan",
+    "branch": "Downtown Branch"
+}).count()
+

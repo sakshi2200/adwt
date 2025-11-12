@@ -1,0 +1,163 @@
+q1
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-size: 14px;
+            color: #555;
+            display: block;
+            margin-bottom: 8px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Student Registration Form</h1>
+    
+    <div class="form-container">
+        <form action="#" method="POST">
+            
+            <!-- Student's Full Name -->
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required placeholder="Enter Full Name">
+            
+            <!-- Email Address -->
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required placeholder="Enter Your Email Address">
+
+            <!-- Contact Number -->
+            <label for="contact">Contact Number:</label>
+            <input type="tel" id="contact" name="contact" required placeholder="Enter Your Contact Number" pattern="[0-9]{10}">
+            
+            <!-- Date of Birth -->
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+            
+            <!-- Gender -->
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+            </select>
+
+            <!-- Course Selection -->
+            <label for="course">Select Course:</label>
+            <select id="course" name="course" required>
+                <option value="">Choose Course</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Business Administration">Business Administration</option>
+            </select>
+
+            <!-- Address -->
+            <label for="address">Address:</label>
+            <textarea id="address" name="address" rows="4" placeholder="Enter your address" required></textarea>
+
+            <!-- Search for Hobbies -->
+            <label for="hobbies">Search for Hobbies:</label>
+            <input type="search" id="hobbies" name="hobbies" placeholder="Search hobbies like 'reading, traveling'" required>
+
+            <!-- Submit Button -->
+            <input type="submit" value="Register">
+
+        </form>
+    </div>
+
+</body>
+</html>
+
+
+q2
+
+                        
+ 
+db.customers.insertMany([
+    { customer_id: 1, first_name: "David", last_name: "Smith", address: "123 Elm St, Pimpri", contact_number: "1234567890", email: "david.smith@example.com", city: "Pimpri" },
+    { customer_id: 2, first_name: "Diana", last_name: "Jones", address: "456 Oak St, Pune", contact_number: "2345678901", email: "diana.jones@example.com", city: "Pune" },
+    { customer_id: 3, first_name: "Daniel", last_name: "Brown", address: "789 Maple St, Pimpri", contact_number: "3456789012", email: "daniel.brown@example.com", city: "Pimpri" },
+    { customer_id: 4, first_name: "Dev", last_name: "Patel", address: "101 Pine St, Mumbai", contact_number: "4567890123", email: "dev.patel@example.com", city: "Mumbai" },
+    { customer_id: 5, first_name: "Disha", last_name: "Singh", address: "102 Birch St, Pune", contact_number: "5678901234", email: "disha.singh@example.com", city: "Pune" },
+    { customer_id: 6, first_name: "Dinesh", last_name: "Verma", address: "103 Cedar St, Pimpri", contact_number: "6789012345", email: "dinesh.verma@example.com", city: "Pimpri" },
+    { customer_id: 7, first_name: "Dheeraj", last_name: "Rao", address: "104 Maple St, Nashik", contact_number: "7890123456", email: "dheeraj.rao@example.com", city: "Nashik" },
+    { customer_id: 8, first_name: "Deepika", last_name: "Sharma", address: "105 Elm St, Pune", contact_number: "8901234567", email: "deepika.sharma@example.com", city: "Pune" },
+    { customer_id: 9, first_name: "Daksha", last_name: "Yadav", address: "106 Oak St, Pimpri", contact_number: "9012345678", email: "daksha.yadav@example.com", city: "Pimpri" },
+    { customer_id: 10, first_name: "Darshan", last_name: "Patil", address: "107 Pine St, Mumbai", contact_number: "0123456789", email: "darshan.patil@example.com", city: "Mumbai" }
+]);
+
+db.loans.insertMany([
+    { loan_id: 1, loan_type: "Home", loan_amount: 500000, loan_status: "Approved", loan_city: "Pimpri", customer_id: 1 },
+    { loan_id: 2, loan_type: "Personal", loan_amount: 200000, loan_status: "Approved", loan_city: "Pune", customer_id: 2 },
+    { loan_id: 3, loan_type: "Home", loan_amount: 750000, loan_status: "Pending", loan_city: "Pimpri", customer_id: 3 },
+    { loan_id: 4, loan_type: "Vehicle", loan_amount: 300000, loan_status: "Approved", loan_city: "Mumbai", customer_id: 4 },
+    { loan_id: 5, loan_type: "Personal", loan_amount: 100000, loan_status: "Approved", loan_city: "Pune", customer_id: 5 },
+    { loan_id: 6, loan_type: "Home", loan_amount: 800000, loan_status: "Pending", loan_city: "Pimpri", customer_id: 6 },
+    { loan_id: 7, loan_type: "Personal", loan_amount: 150000, loan_status: "Approved", loan_city: "Nashik", customer_id: 7 },
+    { loan_id: 8, loan_type: "Home", loan_amount: 500000, loan_status: "Approved", loan_city: "Pune", customer_id: 8 },
+    { loan_id: 9, loan_type: "Vehicle", loan_amount: 250000, loan_status: "Approved", loan_city: "Pimpri", customer_id: 9 },
+    { loan_id: 10, loan_type: "Personal", loan_amount: 600000, loan_status: "Pending", loan_city: "Mumbai", customer_id: 10 }
+]);
+
+db.customers.find({ first_name: /^D/ }).forEach(customer => print(customer.first_name + " " + customer.last_name));
+
+db.loans.find({ loan_city: "Pimpri" })
+    .sort({ "loan_amount": -1 })  // Optionally, you can sort by loan amount or another field
+    .forEach(loan => {
+        var customer = db.customers.findOne({ customer_id: loan.customer_id });
+        print(customer.first_name + " " + customer.last_name);
+    });
+
+
+var maxLoan = db.loans.find().sort({ loan_amount: -1 }).limit(1).toArray()[0];
+var customer = db.customers.findOne({ customer_id: maxLoan.customer_id });
+printjson(customer);
+
+db.customers.update(
+    { first_name: "Darshan", last_name: "Patil" },
+    { $set: { address: "999 New St, Mumbai" } }
+);
+

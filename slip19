@@ -1,0 +1,48 @@
+q1
+
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Progress</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .container { text-align: center; width: 300px; }
+        #progressBarContainer { width: 100%; height: 30px; background: #ddd; border-radius: 5px; margin-top: 20px; }
+        #progressBar { height: 100%; width: 0%; border-radius: 5px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; background: #4CAF50; color: white; border: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <button id="startButton">Start Download</button>
+        <div id="progressBarContainer"><div id="progressBar"></div></div>
+    </div>
+
+    <script>
+        let progress = 0;
+        let colors = ['blue', 'green', 'orange', 'red', 'purple'];
+        let interval;
+
+        document.getElementById('startButton').addEventListener('click', function() {
+            progress = 0;
+            document.getElementById('progressBar').style.width = '0%';
+            interval = setInterval(function() {
+                if (progress < 100) {
+                    progress += 10;
+                    document.getElementById('progressBar').style.width = progress + '%';
+                    if (progress % 30 === 0) {
+                        document.getElementById('progressBar').style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    }
+                } else {
+                    clearInterval(interval);
+                }
+            }, 1000);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,80 @@
+q1
+
+
+                                       	 
+
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nested Boxes Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        /* Outer Box - Orange with Black Border */
+        .outer-container {
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: orange; /* Orange Background */
+            border: 5px solid black; /* Black Border */
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        /* Inner Box (Yellow Background) */
+        .inner-container {
+            background-color: yellow;
+            padding: 20px;
+            margin: 0 auto;
+            border: 5px solid black; 
+            width: 90%;
+            box-sizing: border-box;
+            
+        }
+
+        /* Rectangular Boxes inside the Inner Box */
+        .rectangular-box {
+            background-color: yellow; /* Yellow Background */
+            padding: 20px;
+            margin: 10px 0; /* Space between the boxes */
+            border: 5px solid black; 
+            box-sizing: border-box;
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Outer Box (Orange with Black Border) -->
+    <div class="outer-container">
+        
+        <!-- Inner Box (Yellow Background) -->
+        <div class="inner-container">
+
+            <!-- First Rectangular Box (Text "MSC (COMPUTER SCIENCE)") -->
+            <div class="rectangular-box">
+                MSC (COMPUTER SCIENCE)
+            </div>
+
+            <!-- Second Rectangular Box (Text "Academic year 2023-24") -->
+            <div class="rectangular-box">
+                Academic year 2023-24
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,344 @@
+q1
+
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Web Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        header img {
+            width: 50px;
+            height: auto;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 15px;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: #666;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        section h2 {
+            color: #333;
+        }
+
+        section img {
+            width: 100%;
+            height: auto;
+            max-width: 600px;
+            display: block;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            border: 1px solid #ddd;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #333;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <img src="logo.png" alt="Logo"> <!-- Logo Image from local file -->
+        <h1>Welcome to My Web Page</h1>
+    </header>
+
+    <!-- Navigation Section -->
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#services">Services</a>
+    </nav>
+
+    <!-- Main Section with Informative Text and Image -->
+    <section id="home">
+        <h2>Informative Text</h2>
+        <p>
+            This is a sample webpage showcasing different elements like a logo, navigation, pictures, and a table.
+            We have included a navigation bar, some images, and a table below for demonstration purposes.
+        </p>
+        
+        <!-- Image from local file -->
+        <img src="sample-image.jpg" alt="Sample Image">
+
+        <!-- Hyperlink -->
+        <p>To learn more about web development, visit <a href="https://www.w3schools.com" target="_blank">W3Schools</a>.</p>
+    </section>
+
+    <!-- Table Section -->
+    <section id="services">
+        <h2>Our Services</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Web Design</td>
+                    <td>Creating beautiful and responsive websites.</td>
+                    <td>$500</td>
+                </tr>
+                <tr>
+                    <td>SEO</td>
+                    <td>Optimizing websites to rank better in search engines.</td>
+                    <td>$300</td>
+                </tr>
+                <tr>
+                    <td>Digital Marketing</td>
+                    <td>Promoting your brand online to increase visibility.</td>
+                    <td>$700</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p style="text-align: center; background-color: #333; color: white; padding: 10px 0;">
+            &copy; 2024 My Web Page. All rights reserved.
+        </p>
+    </footer>
+
+</body>
+</html>
+
+
+q2
+
+{
+  "_id": 1,
+  "name": "John Doe",
+  "address": "123 Elm St, Springfield",
+  "email": "johndoe@example.com",
+  "phone": "1234567890",
+  "policies": [
+    { "policy_id": 1, "policy_name": "Komal Jeevan", "company": "XYZ Insurance", "premium_amount": 5000, "policy_type": "Yearly", "duration": 12, "start_date": "2023-01-01", "end_date": "2024-01-01", "benefits": "Life Cover" }
+  ]
+}
+
+{
+  "_id": 2,
+  "name": "Jane Smith",
+  "address": "456 Maple Rd, Springfield",
+  "email": "janesmith@example.com",
+  "phone": "9876543210",
+  "policies": [
+    { "policy_id": 2, "policy_name": "Komal Jeevan", "company": "ABC Insurance", "premium_amount": 4500, "policy_type": "Monthly", "duration": 1, "start_date": "2023-02-01", "end_date": "2023-02-28", "benefits": "Health Cover" }
+  ]
+}
+
+{
+  "_id": 3,
+  "name": "Alice Johnson",
+  "address": "789 Oak St, Springfield",
+  "email": "alicej@example.com",
+  "phone": "1112233445",
+  "policies": [
+    { "policy_id": 3, "policy_name": "Komal Jeevan", "company": "XYZ Insurance", "premium_amount": 6000, "policy_type": "Yearly", "duration": 12, "start_date": "2023-03-01", "end_date": "2024-03-01", "benefits": "Life Cover" },
+    { "policy_id": 4, "policy_name": "Health Shield", "company": "ABC Insurance", "premium_amount": 2000, "policy_type": "Monthly", "duration": 1, "start_date": "2023-04-01", "end_date": "2023-04-30", "benefits": "Health Cover" }
+  ]
+}
+
+{
+  "_id": 4,
+  "name": "Bob Brown",
+  "address": "321 Pine St, Springfield",
+  "email": "bobbrown@example.com",
+  "phone": "2233445566",
+  "policies": [
+    { "policy_id": 5, "policy_name": "Komal Jeevan", "company": "XYZ Insurance", "premium_amount": 7000, "policy_type": "Half Yearly", "duration": 6, "start_date": "2023-05-01", "end_date": "2023-10-31", "benefits": "Health Cover" }
+  ]
+}
+
+{
+  "_id": 5,
+  "name": "Charlie Davis",
+  "address": "654 Birch Ln, Springfield",
+  "email": "charliedavis@example.com",
+  "phone": "3344556677",
+  "policies": [
+    { "policy_id": 6, "policy_name": "Komal Jeevan", "company": "DEF Insurance", "premium_amount": 8000, "policy_type": "Yearly", "duration": 12, "start_date": "2023-06-01", "end_date": "2024-06-01", "benefits": "Life Cover" }
+  ]
+}
+{
+  "_id": 1,
+  "policy_name": "Komal Jeevan",
+  "company": "XYZ Insurance",
+  "premium_amount": 5000,
+  "policy_type": "Yearly",
+  "duration": 12,
+  "start_date": "2023-01-01",
+  "end_date": "2024-01-01",
+  "benefits": "Life Cover",
+  "customer_id": 1
+}
+
+{
+  "_id": 2,
+  "policy_name": "Komal Jeevan",
+  "company": "ABC Insurance",
+  "premium_amount": 4500,
+  "policy_type": "Monthly",
+  "duration": 1,
+  "start_date": "2023-02-01",
+  "end_date": "2023-02-28",
+  "benefits": "Health Cover",
+  "customer_id": 2
+}
+
+{
+  "_id": 3,
+  "policy_name": "Komal Jeevan",
+  "company": "XYZ Insurance",
+  "premium_amount": 6000,
+  "policy_type": "Yearly",
+  "duration": 12,
+  "start_date": "2023-03-01",
+  "end_date": "2024-03-01",
+  "benefits": "Life Cover",
+  "customer_id": 3
+}
+
+{
+  "_id": 4,
+  "policy_name": "Health Shield",
+  "company": "ABC Insurance",
+  "premium_amount": 2000,
+  "policy_type": "Monthly",
+  "duration": 1,
+  "start_date": "2023-04-01",
+  "end_date": "2023-04-30",
+  "benefits": "Health Cover",
+  "customer_id": 3
+}
+
+{
+  "_id": 5,
+  "policy_name": "Komal Jeevan",
+  "company": "XYZ Insurance",
+  "premium_amount": 7000,
+  "policy_type": "Half Yearly",
+  "duration": 6,
+  "start_date": "2023-05-01",
+  "end_date": "2023-10-31",
+  "benefits": "Health Cover",
+  "customer_id": 4
+}
+
+{
+  "_id": 6,
+  "policy_name": "Komal Jeevan",
+  "company": "DEF Insurance",
+  "premium_amount": 8000,
+  "policy_type": "Yearly",
+  "duration": 12,
+  "start_date": "2023-06-01",
+  "end_date": "2024-06-01",
+  "benefits": "Life Cover",
+  "customer_id": 5
+}
+
+db.customers.aggregate([
+    {
+        $lookup: {
+            from: "policies",
+            localField: "_id",
+            foreignField: "customer_id",
+            as: "customer_policies"
+        }
+    },
+    {
+        $unwind: "$customer_policies"
+    },
+    {
+        $match: {
+            "customer_policies.policy_name": "Komal Jeevan"
+        }
+    },
+    {
+        $project: {
+            name: 1,
+            email: 1,
+            phone: 1,
+            "customer_policies.policy_name": 1,
+            "customer_policies.premium_amount": 1
+        }
+    }
+])
+db.policies.aggregate([
+    {
+        $group: {
+            _id: null,
+            averagePremium: { $avg: "$premium_amount" }
+        }
+    }
+])
+db.policies.updateMany(
+    { "policy_type": "Monthly" },
+    [
+        { $set: { "premium_amount": { $multiply: ["$premium_amount", 1.05] } } }
+    ]
+)
+
+db.policies.aggregate([
+    {
+        $match: {
+            policy_type: "Half Yearly"
+        }
+    },
+    {
+        $group: {
+            _id: "$customer_id",
+            count: { $sum: 1 }
+        }
+

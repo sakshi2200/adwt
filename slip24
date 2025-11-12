@@ -1,0 +1,46 @@
+q1
+
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar Form</title>
+</head>
+<body>
+
+    <h1>Calendar Form</h1>
+
+    <form action="#" method="post">
+        <!-- Date Input -->
+        <label for="date">Select Date:</label>
+        <input type="date" id="date" name="date" required><br><br>
+
+        <!-- Datetime Input -->
+        <label for="datetime">Select Date and Time:</label>
+        <input type="datetime" id="datetime" name="datetime"><br><br>
+
+        <!-- Datetime Local Input -->
+        <label for="datetime-local">Select Local Date and Time:</label>
+        <input type="datetime-local" id="datetime-local" name="datetime-local"><br><br>
+
+        <!-- Month Input -->
+        <label for="month">Select Month:</label>
+        <input type="month" id="month" name="month"><br><br>
+
+        <!-- Time Input -->
+        <label for="time">Select Time:</label>
+        <input type="time" id="time" name="time"><br><br>
+
+        <!-- Week Input -->
+        <label for="week">Select Week:</label>
+        <input type="week" id="week" name="week"><br><br>
+
+        <!-- Submit Button -->
+        <input type="submit" value="Submit">
+    </form>
+
+</body>
+</html>
+
+

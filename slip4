@@ -1,0 +1,117 @@
+q1
+
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Basic Styled Table using Bootstrap</title> 
+    <!-- Bootstrap CSS --> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+rel="stylesheet"> 
+</head> 
+<body> 
+ 
+<div class="container mt-5"> 
+    <h2 class="text-center mb-4">User Information Table</h2> 
+     
+    <!-- Bootstrap Table --> 
+    <table class="table"> 
+        <thead> 
+            <tr> 
+                <th>First Name</th> 
+                <th>Last Name</th> 
+                <th>Email ID</th> 
+            </tr> 
+        </thead> 
+        <tbody> 
+            <tr> 
+                <td>John</td> 
+                <td>Doe</td> 
+                <td>john.doe@example.com</td> 
+            </tr> 
+            <tr> 
+                <td>Jane</td> 
+                <td>Smith</td> 
+                <td>jane.smith@example.com</td> 
+            </tr> 
+            <tr> 
+                <td>Michael</td> 
+                <td>Brown</td> 
+                <td>michael.brown@example.com</td> 
+            </tr> 
+        </tbody> 
+    </table> 
+</div> 
+ 
+<!-- Bootstrap JS and dependencies --> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> 
+ 
+</body> 
+</html>
+
+
+
+
+q2
+
+Insert 10 documents in the Hospitals collection: 
+db.hospitals.insertMany([ 
+{ _id: 1, name: "Nashik Medical Centre", city: "Nashik", specializations: ["Pediatric", "Orthopedic"], 
+rating: 4.5, reviews: [] }, 
+{ _id: 2, name: "City Hospital", city: "Nashik", specializations: ["Gynaec", "Pediatric"], rating: 4.0, 
+reviews: [] }, 
+{ _id: 3, name: "Care Hospital", city: "Nashik", specializations: ["Orthopedic"], rating: 3.8, reviews: [] }, 
+{ _id: 4, name: "Sunshine Hospital", city: "Nashik", specializations: ["Gynaec"], rating: 4.2, reviews: [] }, 
+{ _id: 5, name: "Nashik Heart Institute", city: "Nashik", specializations: ["Cardiology"], rating: 4.7, 
+reviews: [] }, 
+{ _id: 6, name: "Eagle Eye Hospital", city: "Nashik", specializations: ["Ophthalmology"], rating: 4.1, 
+reviews: [] }, 
+{ _id: 7, name: "Hope Clinic", city: "Nashik", specializations: ["General"], rating: 3.5, reviews: [] }, 
+{ _id: 8, name: "Vishwa Hospital", city: "Pune", specializations: ["Pediatric", "Gynaec"], rating: 4.6, 
+reviews: [] }, 
+{ _id: 9, name: "Rainbow Hospital", city: "Nashik", specializations: ["Orthopedic", "Cardiology"], rating: 
+4.0, reviews: [] }, 
+{ _id: 10, name: "LifeCare Hospital", city: "Nashik", specializations: ["Gynaec", "General"], rating: 3.9, 
+reviews: [] } 
+]); 
+2. Insert 10 documents in the Doctors collection: 
+db.doctors.insertMany([ 
+{ _id: 1, name: "Dr. Deshmukh", specialization: "Pediatric", hospitals: [1, 2, 8] }, 
+{ _id: 2, name: "Dr. Sharma", specialization: "Gynaec", hospitals: [2, 4, 10] }, 
+{ _id: 3, name: "Dr. Kumar", specialization: "Orthopedic", hospitals: [1, 3, 9] }, 
+{ _id: 4, name: "Dr. Verma", specialization: "Cardiology", hospitals: [5, 9] }, 
+{ _id: 5, name: "Dr. Joshi", specialization: "Ophthalmology", hospitals: [6] }, 
+{ _id: 6, name: "Dr. Rao", specialization: "General", hospitals: [7, 10] }, 
+{ _id: 7, name: "Dr. Patel", specialization: "Pediatric", hospitals: [1, 4] }, 
+{ _id: 8, name: "Dr. Singh", specialization: "Gynaec", hospitals: [2, 3] }, 
+{ _id: 9, name: "Dr. Iyer", specialization: "Orthopedic", hospitals: [3, 9] }, 
+{ _id: 10, name: "Dr. Desai", specialization: "Cardiology", hospitals: [5] } 
+]); 
+3. Insert 5 documents in the Reviews collection: 
+db.reviews.insertMany([ 
+{ _id: 1, hospital_id: 1, reviewer_name: "Alice", rating: 5, comment: "Excellent pediatric care!" }, 
+{ _id: 2, hospital_id: 2, reviewer_name: "Bob", rating: 4, comment: "Good service, but long wait 
+times." }, 
+{ _id: 3, hospital_id: 3, reviewer_name: "Charlie", rating: 3, comment: "Average experience." }, 
+{ _id: 4, hospital_id: 4, reviewer_name: "David", rating: 4, comment: "Great for women's health." }, 
+{ _id: 5, hospital_id: 5, reviewer_name: "Eve", rating: 5, comment: "Highly recommended for cardiac 
+issues." } 
+]); 
+a. List the names of hospitals with a specific specialization (e.g., "Pediatric") 
+db.hospitals.find({ specializations: "Pediatric" }).forEach(hospital => { 
+print("Hospital: " + hospital.name); 
+}); 
+b. List the names of all hospitals located in a specific city (e.g., "Nashik") 
+db.hospitals.find({ city: "Nashik" }).forEach(hospital => { 
+print("Hospital: " + hospital.name); 
+}); 
+c. List the names of hospitals where Dr. Deshmukh visits 
+var doctor = db.doctors.findOne({ name: "Dr. Deshmukh" }); 
+db.hospitals.find({ _id: { $in: doctor.hospitals } }).forEach(hospital => { 
+print("Hospital: " + hospital.name); 
+}); 
+d. List the names of hospitals whose rating is >= 4 
+db.hospitals.find({ rating: { $gte: 4 } }).forEach(hospital => { 
+print("Hospital: " + hospital.name); 
+});

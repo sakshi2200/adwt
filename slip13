@@ -1,0 +1,212 @@
+q1
+
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>Online Bookstore</title> 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+rel="stylesheet"> 
+<style> 
+body { 
+            background-color: #f8f9fa; /* Light background color */ 
+        } 
+        footer { 
+            background-color: #343a40; /* Dark footer */ 
+            color: white; /* White text */ 
+            padding: 20px 0; /* Padding for footer */ 
+        } 
+        nav { 
+            background-color: #007bff; /* Blue navigation */ 
+        } 
+        nav a { 
+            color: white; /* White links */ 
+            padding: 15px; /* Padding for nav links */ 
+            text-decoration: none; /* No underline */ 
+        } 
+        nav a:hover { 
+            background-color: #0056b3; /* Darker blue on hover */ 
+        } 
+        .aside { 
+            background-color: #e9ecef; /* Light aside background */ 
+            padding: 20px; /* Padding inside aside */ 
+            border-radius: 5px; /* Rounded corners */ 
+        } 
+    </style> 
+</head> 
+<body> 
+ 
+<header class="text-center py-4"> 
+    <h1>Welcome to Our Online Bookstore</h1> 
+    <p>Your one-stop shop for all your reading needs!</p> 
+</header> 
+ 
+<nav class="navbar navbar-expand-lg"> 
+    <div class="container"> 
+        <a class="navbar-brand" href="#">Bookstore</a> 
+        <div class="collapse navbar-collapse"> 
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0"> 
+                <li class="nav-item"> 
+                    <a class="nav-link" href="#">Home</a> 
+                </li> 
+                <li class="nav-item"> 
+                    <a class="nav-link" href="#">Categories</a> 
+                </li> 
+                <li class="nav-item"> 
+                    <a class="nav-link" href="#">Best Sellers</a> 
+                </li> 
+                <li class="nav-item"> 
+                    <a class="nav-link" href="#">Contact Us</a> 
+                </li> 
+            </ul> 
+        </div> 
+    </div> 
+</nav> 
+ 
+<main class="container mt-4"> 
+    <section> 
+        <h2>Featured Books</h2> 
+        <div class="row"> 
+            <div class="col-md-4"> 
+                <div class="card mb-4"> 
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Book Cover"> 
+                    <div class="card-body"> 
+                        <h5 class="card-title">Book Title 1</h5> 
+                        <p class="card-text">Author: Author Name 1</p> 
+                        <p class="card-text">Price: $19.99</p> 
+                        <a href="#" class="btn btn-primary">Add to Cart</a> 
+                    </div> 
+                </div> 
+            </div> 
+            <div class="col-md-4"> 
+                <div class="card mb-4"> 
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Book Cover"> 
+                    <div class="card-body"> 
+                        <h5 class="card-title">Book Title 2</h5> 
+                        <p class="card-text">Author: Author Name 2</p> 
+                        <p class="card-text">Price: $14.99</p> 
+                        <a href="#" class="btn btn-primary">Add to Cart</a> 
+                    </div> 
+                </div> 
+            </div> 
+            <div class="col-md-4"> 
+                <div class="card mb-4"> 
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Book Cover"> 
+                    <div class="card-body"> 
+                        <h5 class="card-title">Book Title 3</h5> 
+                        <p class="card-text">Author: Author Name 3</p> 
+                        <p class="card-text">Price: $24.99</p> 
+                        <a href="#" class="btn btn-primary">Add to Cart</a> 
+                    </div> 
+                </div> 
+            </div> 
+        </div> 
+    </section> 
+ 
+    <aside class="mt-4"> 
+        <h2>About Us</h2> 
+        <p>We are dedicated to providing a wide selection of books at great prices. Our mission is to 
+promote reading and literacy in our community.</p> 
+    </aside> 
+</main> 
+ 
+<footer class="text-center"> 
+    <p>&copy; 2024 Online Bookstore. All rights reserved.</p> 
+    <p>Contact us: info@onlinebookstore.com</p> 
+</footer> 
+ 
+<!-- Bootstrap JS and dependencies --> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> 
+ 
+</body> 
+</html>
+
+
+
+
+q2
+
+
+db.students.insertMany([ 
+{ _id: 1, name: "Alice Johnson", class: "FY", email: "alice.j@example.com" }, 
+{ _id: 2, name: "Bob Smith", class: "FY", email: "bob.s@example.com" }, 
+{ _id: 3, name: "Charlie Brown", class: "SY", email: "charlie.b@example.com" }, 
+{ _id: 4, name: "Daisy Miller", class: "FY", email: "daisy.m@example.com" }, 
+{ _id: 5, name: "Ethan Wilson", class: "TY", email: "ethan.w@example.com" }, 
+{ _id: 6, name: "Fiona Lee", class: "FY", email: "fiona.l@example.com" }, 
+{ _id: 7, name: "George Taylor", class: "SY", email: "george.t@example.com" }, 
+{ _id: 8, name: "Hannah Clark", class: "TY", email: "hannah.c@example.com" }, 
+{ _id: 9, name: "Isaac Green", class: "FY", email: "isaac.g@example.com" }, 
+{ _id: 10, name: "Jack White", class: "SY", email: "jack.w@example.com" } 
+]); 
+2. Insert 5 documents in the Competitions collection: 
+db.competitions.insertMany([ 
+{ _id: 1, name: "Coding Challenge", date: new Date("2023-09-15"), winners: [] }, 
+{ _id: 2, name: "E-Rangoli", date: new Date("2023-09-20"), winners: [] }, 
+{ _id: 3, name: "Debate Competition", date: new Date("2023-09-25"), winners: [] }, 
+{ _id: 4, name: "Art Fest", date: new Date("2023-09-30"), winners: [] }, 
+{ _id: 5, name: "Sports Meet", date: new Date("2023-10-05"), winners: [] } 
+]); 
+3. Insert 10 documents in the Participation collection: 
+db.participation.insertMany([ 
+{ _id: 1, student_id: 1, competition_id: 1, rank: 1 }, 
+{ _id: 2, student_id: 2, competition_id: 1, rank: 2 }, 
+{ _id: 3, student_id: 3, competition_id: 2, rank: 1 }, 
+{ _id: 4, student_id: 1, competition_id: 2, rank: 3 }, 
+{ _id: 5, student_id: 4, competition_id: 3, rank: 1 }, 
+{ _id: 6, student_id: 5, competition_id: 3, rank: 2 }, 
+{ _id: 7, student_id: 6, competition_id: 4, rank: 1 }, 
+{ _id: 8, student_id: 7, competition_id: 4, rank: 2 }, 
+{ _id: 9, student_id: 8, competition_id: 5, rank: 1 }, 
+{ _id: 10, student_id: 9, competition_id: 5, rank: 2 } 
+]); 
+Step 3: Queries 
+a. Display the average number of students participating in each competition 
+db.competitions.aggregate([ 
+    { 
+        $lookup: { 
+            from: "participation", 
+            localField: "_id", 
+            foreignField: "competition_id", 
+            as: "participants" 
+        } 
+    }, 
+    { 
+        $project: { 
+            name: 1, 
+            average_participants: { $avg: { $size: "$participants" } } 
+        } 
+    } 
+]).forEach(competition => { 
+    print("Competition Name: " + competition.name + ", Average Participants: " + 
+competition.average_participants); 
+}); 
+b. Find the number of students for the programming competition 
+var programmingCompetition = db.competitions.findOne({ name: "Coding Challenge" }); 
+var participantCount = db.participation.countDocuments({ competition_id: 
+programmingCompetition._id }); 
+ 
+print("Number of students in the 'Coding Challenge' competition: " + participantCount); 
+c. Display the names of the first three winners of each competition 
+db.competitions.find().forEach(competition => { 
+    print("Competition Name: " + competition.name); 
+    var winners = db.participation.find({ competition_id: competition._id }).sort({ rank: 1 }).limit(3); 
+     
+    winners.forEach(winner => { 
+        var student = db.students.findOne({ _id: winner.student_id }); 
+        print("Winner: " + student.name + ", Rank: " + winner.rank); 
+    }); 
+}); 
+d. Display students from class 'FY' who participated in 'E-Rangoli' competition 
+var eRangoliCompetition = db.competitions.findOne({ name: "E-Rangoli" }); 
+ 
+db.students.find({ class: "FY", _id: { $in: db.participation.find({ competition_id: eRangoliCompetition._id 
+}).map(p => p.student_id) } }) 
+.forEach(student => { 
+    print("Student Name: " + student.name + ", Class: " + student.class); 
+});
+
+
+
+

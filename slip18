@@ -50,3 +50,52 @@ q1
 </body>
 </html>
    
+
+
+
+q2
+
+
+// Create Doctors 
+CREATE (:Doctor {name: "Dr. Smith", specialization: "Orthopedic", area: "Pune", experience_years: 10}), 
+(:Doctor {name: "Dr. Johnson", specialization: "Pediatrics", area: "Pune", experience_years: 5}), 
+(:Doctor {name: "Dr. Patel", specialization: "Heart Specialist", area: "Pune", experience_years: 15}), 
+(:Doctor {name: "Dr. Verma", specialization: "Cancer Specialist", area: "Pune", experience_years: 8}), 
+(:Doctor {name: "Dr. Gupta", specialization: "ENT", area: "Pune", experience_years: 6}); 
+// Create Hospitals 
+CREATE (:Hospital {name: "HealthCare Hospital", location: "Pune", type: "multi-specialty"}), 
+(:Hospital {name: "City Hospital", location: "Pune", type: "general"}), 
+(:Hospital {name: "Heart Institute", location: "Pune", type: "specialty"}), 
+(:Hospital {name: "Cancer Center", location: "Pune", type: "specialty"}); 
+// Create Clinics 
+CREATE (:Clinic {name: "Kids Clinic", location: "Pune", type: "private"}), 
+(:Clinic {name: "Wellness Clinic", location: "Pune", type: "private"}); 
+// Create Patients 
+CREATE (:Patient {name: "Alice", age: 30, gender: "female"}), 
+(:Patient {name: "Bob", age: 40, gender: "male"}); 
+// Create Relationships 
+MATCH (d:Doctor {name: "Dr. Smith"}), (h:Hospital {name: "HealthCare Hospital"}) 
+CREATE (d)-[:VISITS {days_per_week: 3}]->(h); 
+MATCH (d:Doctor {name: "Dr. Johnson"}), (c:Clinic {name: "Kids Clinic"}) 
+CREATE (d)-[:OWNS]->(c); 
+MATCH (d:Doctor {name: "Dr. Johnson"}), (p:Patient {name: "Alice"}) 
+CREATE (p)-[:RECOMMENDS]->(d); 
+MATCH (d:Doctor {name: "Dr. Johnson"}), (r:Review {rating: 5, comment: "Excellent care", date: "2023
+10-01"}) 
+CREATE (d)-[:HAS_REVIEW]->(r); 
+// Repeat similar CREATE statements for other doctors, clinics, and relationships. 
+Step 3: Answering Queries 
+a. List the Orthopedic doctors in a specific area 
+MATCH (d:Doctor {specialization: "Orthopedic", area: "Pune"}) 
+RETURN d.name AS Orthopedic_Doctor; 
+b. List the doctors who have a specialization in a specific stream 
+MATCH (d:Doctor {specialization: "Gynaec"}) 
+RETURN d.name AS Gynaec_Doctors; 
+c. List the most recommended Pediatrics in Seren Medows 
+MATCH (p:Patient)-[:RECOMMENDS]->(d:Doctor {specialization: "Pediatrics", area: "Seren Medows"}) 
+RETURN d.name AS Most_Recommended_Pediatrics; 
+d. List all doctors who visit more than 2 hospitals 
+MATCH (d:Doctor)-[:VISITS]->(h:Hospital) 
+WITH d, COUNT(h) AS hospitalCount 
+WHERE hospitalCount > 2 
+RETURN d.name AS Doctors_Visiting_More_Than_2_Hospitals;

@@ -1,0 +1,104 @@
+q1
+
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+<meta charset="UTF-8"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+<title>Image Thumbnails using Bootstrap</title> 
+<!-- Bootstrap CSS --> 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+rel="stylesheet"> 
+</head> 
+<body> 
+<div class="container mt-5"> 
+    <h2 class="text-center mb-4">Image Thumbnails</h2> 
+     
+    <!-- Bootstrap Grid for Thumbnails --> 
+    <div class="row"> 
+        <!-- Thumbnail 1 --> 
+        <div class="col-md-4"> 
+            <div class="card"> 
+                <img src="https://via.placeholder.com/300" class="card-img-top img-thumbnail" 
+alt="Thumbnail 1"> 
+                <div class="card-body"> 
+                    <h5 class="card-title">Image 1</h5> 
+                    <p class="card-text">This is a description of the first image.</p> 
+                </div> 
+            </div> 
+        </div> 
+         
+        <!-- Thumbnail 2 --> 
+        <div class="col-md-4"> 
+            <div class="card"> 
+                <img src="https://via.placeholder.com/300" class="card-img-top img-thumbnail" 
+alt="Thumbnail 2"> 
+                <div class="card-body"> 
+                    <h5 class="card-title">Image 2</h5> 
+                    <p class="card-text">This is a description of the second image.</p> 
+                </div> 
+            </div> 
+        </div> 
+ 
+        <!-- Thumbnail 3 --> 
+        <div class="col-md-4"> 
+            <div class="card"> 
+                <img src="https://via.placeholder.com/300" class="card-img-top img-thumbnail" 
+alt="Thumbnail 3"> 
+                <div class="card-body"> 
+                    <h5 class="card-title">Image 3</h5> 
+                    <p class="card-text">This is a description of the third image.</p> 
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+ 
+    <!-- More rows can be added similarly to display more images --> 
+</div> 
+ 
+<!-- Bootstrap JS and dependencies --> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script> 
+ 
+</body> 
+</html>
+
+
+
+q2
+
+
+Insert 5 documents in the Employees collection: 
+db.employees.insertMany([ 
+{ _id: 1, name: "John Doe", salary: 60000, dept_id: 1 }, 
+{ _id: 2, name: "Jane Smith", salary: 75000, dept_id: 2 }, 
+{ _id: 3, name: "Emily Davis", salary: 55000, dept_id: 1 }, 
+{ _id: 4, name: "Michael Brown", salary: 50000, dept_id: 3 }, 
+{ _id: 5, name: "Sarah Wilson", salary: 48000, dept_id: 2 } 
+]); 
+Insert 5 documents in the Departments collection: 
+db.departments.insertMany([ 
+{ _id: 1, dept_name: "Sales", employees: [1, 3], num_employees: 2 }, 
+{ _id: 2, dept_name: "Marketing", employees: [2, 5], num_employees: 2 }, 
+{ _id: 3, dept_name: "HR", employees: [4], num_employees: 1 } 
+]); 
+Display the name of the employee who has the highest salary 
+db.employees.find().sort({ salary: -1 }).limit(1).forEach(employee => { 
+print("Employee with highest salary: " + employee.name); 
+}); 
+Display the biggest department with the maximum number of employees 
+db.departments.find().sort({ num_employees: -1 }).limit(1).forEach(department => { 
+print("Biggest department: " + department.dept_name); 
+}); 
+Write a cursor which shows department-wise employee information 
+var cursor = db.departments.find(); 
+cursor.forEach(dept => { 
+print("Department: " + dept.dept_name); 
+db.employees.find({ dept_id: dept._id }).forEach(emp => { 
+print("  Employee: " + emp.name + ", Salary: " + emp.salary); 
+}); 
+}); 
+List all the employees who work in the Sales department and have a salary greater than 50,000 
+var sales_dept = db.departments.findOne({ dept_name: "Sales" }); 
+db.employees.find({ dept_id: sales_dept._id, salary: { $gt: 50000 } }).forEach(employee => { 
+    print("Employee: " + employee.name); 
+}); 

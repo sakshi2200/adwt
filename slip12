@@ -140,3 +140,162 @@ q1
 
 </body>
 </html>
+
+
+q2
+
+1]
+
+db.actors.insertMany([
+  {
+    actor_id: 1,
+    name: "Akshay",
+    age: 52,
+    nationality: "Indian"
+  },
+  {
+    actor_id: 2,
+    name: "Salman",
+    age: 55,
+    nationality: "Indian"
+  },
+  {
+    actor_id: 3,
+    name: "Katrina",
+    age: 38,
+    nationality: "Indian"
+  },
+  {
+    actor_id: 4,
+    name: "Ajay",
+    age: 54,
+    nationality: "Indian"
+  },
+  {
+    actor_id: 5,
+    name: "Shahid",
+    age: 43,
+    nationality: "Indian"
+  }
+]);
+
+
+
+b]
+
+db.producers.insertMany([
+  {
+    producer_id: 101,
+    name: "Karan Johar",
+    company: "Dharma Productions"
+  },
+  {
+    producer_id: 102,
+    name: "Aditya Chopra",
+    company: "YRF Films"
+  },
+  {
+    producer_id: 103,
+    name: "Rohit Shetty",
+    company: "RS Films"
+  },
+  {
+    producer_id: 104,
+    name: "Sajid Nadiadwala",
+    company: "NGE"
+  },
+  {
+    producer_id: 105,
+    name: "Farhan Akhtar",
+    company: "Excel Entertainment"
+  }
+]);
+
+
+c]
+db.movies.insertMany([
+  {
+    movie_id: 1001,
+    title: "Sooryavanshi",
+    year: 2021,
+    budget: 120,
+    producers: [101, 103],
+    actors: [1, 2, 3]
+  },
+  {
+    movie_id: 1002,
+    title: "Tiger Zinda Hai",
+    year: 2017,
+    budget: 150,
+    producers: [102],
+    actors: [2, 3]
+  },
+  {
+    movie_id: 1003,
+    title: "Golmaal Again",
+    year: 2018,
+    budget: 80,
+    producers: [103],
+    actors: [4]
+  },
+  {
+    movie_id: 1004,
+    title: "Bajrangi Bhaijaan",
+    year: 2015,
+    budget: 100,
+    producers: [102, 105],
+    actors: [2]
+  },
+  {
+    movie_id: 1005,
+    title: "Gabbar Is Back",
+    year: 2015,
+    budget: 90,
+    producers: [104],
+    actors: [1]
+  }
+]);
+
+
+d]  db.movie_cast.insertMany([
+  { movie_id: 1001, actor_id: 1, role: "ATS Chief" },
+  { movie_id: 1001, actor_id: 2, role: "Inspector" },
+  { movie_id: 1001, actor_id: 3, role: "Lead Actress" },
+  { movie_id: 1002, actor_id: 2, role: "RAW Agent" },
+  { movie_id: 1005, actor_id: 1, role: "Vigilante" }
+]);
+
+
+a]
+db.movies.find().sort({ budget: -1 }).limit(1);
+
+
+b]
+db.movies.aggregate([
+  { $group: {
+      _id: { producer_id: "$producers", year: "$year" },
+      movieCount: { $sum: 1 }
+    }
+  },
+  { $match: { movieCount: { $gt: 1 } } },
+  {
+    $lookup: {
+      from: "producers",
+      localField: "_id.producer_id",
+      foreignField: "producer_id",
+      as: "producer_details"
+    }
+  }
+]);
+
+
+c]
+let akshayMovies = db.movies.find({ actors: 1 }).toArray();
+
+
+d]
+db.movies.find(
+  { $expr: { $gt: [ { $size: "$producers" }, 1 ] } },
+  { title: 1, producers: 1 }
+);
+

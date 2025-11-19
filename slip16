@@ -83,3 +83,230 @@ q1
 
 </body>
 </html>
+
+
+q2
+
+//Neo4j
+
+
+### **Labels**
+
+1. **Customer**
+
+   * `name`
+   * `email`
+   * `mobile`
+
+2. **Industry**
+   (Food delivery platforms)
+
+   * `name`  (Zomato, Swiggy)
+
+3. **Restaurant**
+
+   * `name`
+   * `area`
+   * `rating`
+
+4. **Order**
+
+   * `orderId`
+   * `date`
+   * `amount`
+
+5. **Offer**
+
+   * `offerName`
+   * `discount`
+
+---
+
+### **Relationships**
+
+| Relationship                                | Meaning                            |
+| ------------------------------------------- | ---------------------------------- |
+| `(:Customer)-[:PLACED]->(:Order)`           | Customer places an order           |
+| `(:Order)-[:THROUGH]->(:Industry)`          | Order placed through Zomato/Swiggy |
+| `(:Order)-[:FROM]->(:Restaurant)`           | Order from restaurant              |
+| `(:Customer)-[:GOT_OFFER]->(:Offer)`        | Customer received offer            |
+| `(:Customer)-[:RATED {stars}]->(:Industry)` | Customer rates Zomato/Swiggy       |
+| `(:Customer)-[:RECOMMENDS]->(:Restaurant)`  | Customer recommends restaurant     |
+| `(:Customer)-[:FRIEND_WITH]->(:Customer)`   | Friend network                     |
+
+---
+
+### **High-Level Graph Model (ASCII)**
+
+```
+(Customer)-[:PLACED]->(Order)-[:THROUGH]->(Industry)
+                            |
+                            +--[:FROM]--> (Restaurant)
+
+(Customer)-[:GOT_OFFER]->(Offer)
+
+(Customer)-[:RATED {stars}]->(Industry)
+
+(Customer)-[:RECOMMENDS]->(Restaurant)
+
+(Customer)-[:FRIEND_WITH]->(Customer)
+```
+
+---
+
+# ✅ **5. Create Nodes & Relationships in Neo4j (Cypher Commands)**
+
+### **Create Industries**
+
+```cypher
+CREATE (:Industry {name: "Zomato"});
+CREATE (:Industry {name: "Swiggy"});
+```
+
+### **Create Restaurants**
+
+```cypher
+CREATE (:Restaurant {name: "Burger King", area: "Pune", rating: 4.5});
+CREATE (:Restaurant {name: "Tasty Treat", area: "Mumbai", rating: 3.8});
+CREATE (:Restaurant {name: "Spice Hub", area: "Pune", rating: 4.2});
+```
+
+### **Create Customers**
+
+```cypher
+CREATE (:Customer {name: "Sam", email: "sam@gmail.com"});
+CREATE (:Customer {name: "Soham", email: "soham@gmail.com"});
+CREATE (:Customer {name: "Rahul", email: "rahul@gmail.com"});
+```
+
+### **Create Offers**
+
+```cypher
+CREATE (:Offer {offerName: "New Year Offer", discount: 20});
+```
+
+### **Create Orders**
+
+```cypher
+CREATE (:Order {orderId: 101, date: "2023-01-01", amount: 350});
+CREATE (:Order {orderId: 102, date: "2023-01-01", amount: 500});
+CREATE (:Order {orderId: 103, date: "2023-01-02", amount: 250});
+```
+
+### **Create Relationships**
+
+#### Orders placed by customers
+
+```cypher
+MATCH (c:Customer {name: "Sam"}), (o:Order {orderId: 101})
+CREATE (c)-[:PLACED]->(o);
+
+MATCH (c:Customer {name: "Soham"}), (o:Order {orderId: 102})
+CREATE (c)-[:PLACED]->(o);
+
+MATCH (c:Customer {name: "Rahul"}), (o:Order {orderId: 103})
+CREATE (c)-[:PLACED]->(o);
+```
+
+#### Through industry
+
+```cypher
+MATCH (o:Order {orderId: 101}), (i:Industry {name: "Swiggy"})
+CREATE (o)-[:THROUGH]->(i);
+
+MATCH (o:Order {orderId: 102}), (i:Industry {name: "Swiggy"})
+CREATE (o)-[:THROUGH]->(i);
+
+MATCH (o:Order {orderId: 103}), (i:Industry {name: "Zomato"})
+CREATE (o)-[:THROUGH]->(i);
+```
+
+#### From restaurant
+
+```cypher
+MATCH (o:Order {orderId: 101}), (r:Restaurant {name: "Burger King"})
+CREATE (o)-[:FROM]->(r);
+
+MATCH (o:Order {orderId: 102}), (r:Restaurant {name: "Spice Hub"})
+CREATE (o)-[:FROM]->(r);
+
+MATCH (o:Order {orderId: 103}), (r:Restaurant {name: "Tasty Treat"})
+CREATE (o)-[:FROM]->(r);
+```
+
+#### Customer gets offer
+
+```cypher
+MATCH (c:Customer {name: "Sam"}), (of:Offer)
+CREATE (c)-[:GOT_OFFER]->(of);
+```
+
+#### Customer rating
+
+```cypher
+MATCH (c:Customer {name: "Sam"}), (i:Industry {name: "Swiggy"})
+CREATE (c)-[:RATED {stars: 5}]->(i);
+```
+
+#### Customer recommendation
+
+```cypher
+MATCH (c:Customer {name: "Sam"}), (r:Restaurant {name: "Burger King"})
+CREATE (c)-[:RECOMMENDS]->(r);
+```
+
+---
+
+### **Visualization**
+
+```cypher
+MATCH (n) RETURN n;
+```
+
+---
+
+# ✅ **6. Queries**
+
+---
+
+## **a) Count number of customers who placed order on “1/1/2023”**
+
+```cypher
+MATCH (c:Customer)-[:PLACED]->(o:Order {date: "2023-01-01"})
+RETURN COUNT(c) AS total_customers;
+```
+
+---
+
+## **b) List names of customers whose name starts with ‘S’ and ordered using Swiggy**
+
+```cypher
+MATCH (c:Customer)-[:PLACED]->(o:Order)-[:THROUGH]->(i:Industry {name: "Swiggy"})
+WHERE c.name STARTS WITH "S"
+RETURN c.name;
+```
+
+---
+
+## **c) List names of hotels with high rating (>=4)**
+
+```cypher
+MATCH (r:Restaurant)
+WHERE r.rating >= 4
+RETURN r.name AS High_Rated_Restaurants, r.rating;
+```
+
+---
+
+## **d) List most recommended hotels in a specific area**
+
+(Example: Pune)
+
+```cypher
+MATCH (c:Customer)-[:RECOMMENDS]->(r:Restaurant {area: "Pune"})
+RETURN r.name AS Restaurant, COUNT(c) AS recommendations
+ORDER BY recommendations DESC;
+```
+
+---
+

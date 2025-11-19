@@ -1,0 +1,61 @@
+q2
+
+CREATE (:Movie {title: 'Dilwale Dulhania Le Jayenge', year: 1995, box_office: 120, awards: 10}),
+       (:Movie {title: 'Chennai Express', year: 2013, box_office: 227, awards: 7}),
+       (:Movie {title: '3 Idiots', year: 2009, box_office: 460, awards: 15}),
+       (:Movie {title: 'Raees', year: 2017, box_office: 150, awards: 3}),
+       (:Movie {title: 'Swades', year: 2004, box_office: 60, awards: 6});
+
+ Create Actor Nodes
+CREATE (:Actor {name: 'Shahrukh Khan', dob: '1965-11-02', nationality: 'Indian'}),
+       (:Actor {name: 'Aamir Khan', dob: '1965-03-14', nationality: 'Indian'}),
+       (:Actor {name: 'Deepika Padukone', dob: '1986-01-05', nationality: 'Indian'}),
+       (:Actor {name: 'Kajol', dob: '1974-08-05', nationality: 'Indian'}),
+       (:Actor {name: 'Nawazuddin Siddiqui', dob: '1974-05-19', nationality: 'Indian'});
+
+Create Relationships
+// Shahrukh Khan's movies
+MATCH (a:Actor {name: 'Shahrukh Khan'}), (m:Movie {title: 'Dilwale Dulhania Le Jayenge'})
+CREATE (a)-[:ACTED_IN]->(m);
+
+MATCH (a:Actor {name: 'Shahrukh Khan'}), (m:Movie {title: 'Chennai Express'})
+CREATE (a)-[:ACTED_IN]->(m);
+
+MATCH (a:Actor {name: 'Shahrukh Khan'}), (m:Movie {title: 'Raees'})
+CREATE (a)-[:ACTED_IN]->(m);
+
+MATCH (a:Actor {name: 'Shahrukh Khan'}), (m:Movie {title: 'Swades'})
+CREATE (a)-[:ACTED_IN]->(m);
+
+// Others
+MATCH (a:Actor {name: 'Kajol'}), (m:Movie {title: 'Dilwale Dulhania Le Jayenge'})
+CREATE (a)-[:ACTED_IN]->(m);
+
+MATCH (a:Actor {name: 'Deepika Padukone'}), (m:Movie {title: 'Chennai Express'})
+CREATE (a)-[:ACTED_IN]->(m);
+
+MATCH (a:Actor {name: 'Aamir Khan'}), (m:Movie {title: '3 Idiots'})
+CREATE (a)-[:ACTED_IN]->(m);
+
+MATCH (a:Actor {name: 'Nawazuddin Siddiqui'}), (m:Movie {title: 'Raees'})
+CREATE (a)-[:ACTED_IN]->(m);
+
+
+🔹 a. Find movie which made highest business [3 Marks]
+MATCH (m:Movie)
+RETURN m.title, m.box_office
+ORDER BY m.box_office DESC
+LIMIT 1;
+
+🔹 b. Display details of movie along with actors [3 Marks]
+MATCH (a:Actor)-[:ACTED_IN]->(m:Movie)
+RETURN m.title AS Movie, collect(a.name) AS Actors;
+
+🔹 c. List all the movies of “Shahrukh Khan” [4 Marks]
+MATCH (a:Actor {name: 'Shahrukh Khan'})-[:ACTED_IN]->(m:Movie)
+RETURN m.title AS Movie;
+
+🔹 d. Display all movies having more than 2 awards received [4 Marks]
+MATCH (m:Movie)
+WHERE m.awards > 2
+RETURN m.title AS Movie, m.awards AS Awards;

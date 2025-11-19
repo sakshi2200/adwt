@@ -38,3 +38,78 @@ required><br><br>
  </form>
 </body>
 </html>
+
+
+
+
+
+q2
+
+1]  (Student) ---APPLIED_FOR----> (Scholarship)
+(Student) ---BENEFITTED_BY--> (Scholarship)
+(Student) ---RECOMMENDED_TO-> (Student)
+
+
+2]  CREATE (:Scholarship {sch_id: 1, name: "National OBC Scholarship", category: "OBC", income_limit: 80000, year: "2020-2021"}),
+       (:Scholarship {sch_id: 2, name: "Merit Scholarship", category: "GENERAL", income_limit: 120000, year: "2020-2021"}),
+       (:Scholarship {sch_id: 3, name: "Post Matric OBC Scholarship", category: "OBC", income_limit: 100000, year: "2020-2021"}),
+       (:Scholarship {sch_id: 4, name: "Minority Scholarship", category: "Minority", income_limit: 150000, year: "2020-2021"}),
+       (:Scholarship {sch_id: 5, name: "SC Merit Scheme", category: "SC", income_limit: 90000, year: "2020-2021"});
+
+CREATE (:Student {student_id: 101, name: "Rahul", category: "OBC", income: 70000}),
+       (:Student {student_id: 102, name: "Neha", category: "GENERAL", income: 110000}),
+       (:Student {student_id: 103, name: "Rohit", category: "OBC", income: 65000}),
+       (:Student {student_id: 104, name: "Sana", category: "Minority", income: 90000}),
+       (:Student {student_id: 105, name: "Amit", category: "SC", income: 80000});
+
+
+MATCH (s:Student),(sc:Scholarship)
+WHERE s.student_id = 101 AND sc.sch_id = 1
+CREATE (s)-[:APPLIED_FOR]->(sc);
+
+MATCH (s:Student),(sc:Scholarship)
+WHERE s.student_id = 103 AND sc.sch_id = 3
+CREATE (s)-[:APPLIED_FOR]->(sc);
+
+MATCH (s:Student),(sc:Scholarship)
+WHERE s.student_id = 102 AND sc.sch_id = 2
+CREATE (s)-[:APPLIED_FOR]->(sc);
+
+//
+MATCH (s:Student),(sc:Scholarship)
+WHERE s.student_id = 101 AND sc.sch_id = 1
+CREATE (s)-[:BENEFITTED_BY]->(sc);
+
+MATCH (s:Student),(sc:Scholarship)
+WHERE s.student_id = 103 AND sc.sch_id = 3
+CREATE (s)-[:BENEFITTED_BY]->(sc);
+
+//
+MATCH (s1:Student {name: "Rahul"}), (s2:Student {name: "Rohit"})
+CREATE (s1)-[:RECOMMENDED_TO]->(s2);
+
+MATCH (s1:Student {name: "Neha"}), (s2:Student {name: "Amit"})
+CREATE (s1)-[:RECOMMENDED_TO]->(s2);
+
+
+a] MATCH (s:Scholarship)
+WHERE s.category = "OBC"
+RETURN s.name;
+
+
+b] MATCH (st:Student)-[:BENEFITTED_BY]->(sc:Scholarship)
+WHERE sc.name = "National OBC Scholarship"
+      AND sc.year = "2020-2021"
+RETURN COUNT(st) AS totalBenefitted;
+
+
+c]MATCH (s:Scholarship {name: "Post Matric OBC Scholarship"})
+SET s.income_limit = 120000
+RETURN s;
+
+
+d] MATCH (st:Student)-[:BENEFITTED_BY]->(sc:Scholarship)
+RETURN sc.name, COUNT(st) AS totalStudents
+ORDER BY totalStudents DESC
+LIMIT 1;
+

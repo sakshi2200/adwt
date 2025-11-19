@@ -78,3 +78,180 @@ q1
 
 </body>
 </html>
+
+
+
+q2
+
+
+//Neo4j
+
+
+# **1. Labels, Relationships & Properties (High-Level Graph Model)**
+
+### **Labels**
+
+* **Author**
+
+  * Properties: `name`, `age`
+* **Book**
+
+  * Properties: `title`, `type`, `year`
+* **Publisher**
+
+  * Properties: `name`, `location`
+* **Reader**
+
+  * Properties: `name`, `age`
+* **Review**
+
+  * Properties: `rating`, `comment`
+
+---
+
+### **Relationships**
+
+* **(Author) –[:WROTE]→ (Book)**
+* **(Book) –[:PUBLISHED_BY]→ (Publisher)**
+* **(Reader) –[:READ]→ (Book)**
+* **(Reader) –[:REVIEWED {rating, comment}]→ (Book)**
+* **(Reader) –[:RECOMMENDS]→ (Book)**
+
+---
+
+### **High-Level Graph Model (Diagram)**
+
+```
+ Author ----WROTE----> Book ----PUBLISHED_BY----> Publisher
+    |                       ^
+    |                       |
+    |                       |
+ Reader ----READ----------> |
+    |                       |
+    |----REVIEWED (rating)->|
+    |----RECOMMENDS-------->|
+```
+
+---
+
+# **2. Cypher Commands to Create Nodes & Relationships**
+
+### **Create Authors**
+
+```cypher
+CREATE (:Author {name: "Raj Kapoor", age: 45});
+CREATE (:Author {name: "Neha Sharma", age: 38});
+```
+
+### **Create Publishers**
+
+```cypher
+CREATE (:Publisher {name: "Sage", location: "Delhi"});
+CREATE (:Publisher {name: "Narayan Publications", location: "Mumbai"});
+CREATE (:Publisher {name: "Nest Publishers", location: "Bangalore"});
+```
+
+### **Create Books**
+
+```cypher
+CREATE (:Book {title: "Funny Comics", type: "Comics", year: 2022});
+CREATE (:Book {title: "Data Science 101", type: "Education", year: 2021});
+```
+
+### **Create Readers**
+
+```cypher
+CREATE (:Reader {name: "Sam", age: 22});
+CREATE (:Reader {name: "Sneha", age: 25});
+CREATE (:Reader {name: "Amit", age: 30});
+```
+
+---
+
+### **Create Relationships**
+
+#### Authors → Books
+
+```cypher
+MATCH (a:Author {name:"Raj Kapoor"}), (b:Book {title:"Funny Comics"})
+CREATE (a)-[:WROTE]->(b);
+
+MATCH (a:Author {name:"Neha Sharma"}), (b:Book {title:"Data Science 101"})
+CREATE (a)-[:WROTE]->(b);
+```
+
+#### Books → Publishers
+
+```cypher
+MATCH (b:Book {title:"Funny Comics"}), (p:Publisher {name:"Narayan Publications"})
+CREATE (b)-[:PUBLISHED_BY]->(p);
+
+MATCH (b:Book {title:"Data Science 101"}), (p:Publisher {name:"Sage"})
+CREATE (b)-[:PUBLISHED_BY]->(p);
+```
+
+#### Readers → Books
+
+```cypher
+MATCH (r:Reader {name:"Sam"}), (b:Book {title:"Funny Comics"})
+CREATE (r)-[:READ]->(b);
+
+MATCH (r:Reader {name:"Sneha"}), (b:Book {title:"Data Science 101"})
+CREATE (r)-[:READ]->(b);
+```
+
+#### Reviews
+
+```cypher
+MATCH (r:Reader {name:"Amit"}), (b:Book {title:"Data Science 101"})
+CREATE (r)-[:REVIEWED {rating:4, comment:"Very helpful"}]->(b);
+```
+
+---
+
+# **3. Queries**
+
+---
+
+## **a. List the names of authors who wrote “Comics”.**
+
+```cypher
+MATCH (a:Author)-[:WROTE]->(b:Book {type:"Comics"})
+RETURN a.name AS Author;
+```
+
+---
+
+## **b. Count number of readers of ______ book published by “Sage”.**
+
+(Example book: *Data Science 101*)
+
+```cypher
+MATCH (r:Reader)-[:READ]->(b:Book)-[:PUBLISHED_BY]->(p:Publisher {name:"Sage"})
+WHERE b.title = "Data Science 101"
+RETURN COUNT(r) AS Number_of_Readers;
+```
+
+---
+
+## **c. List all publishers whose name starts with “N”.**
+
+```cypher
+MATCH (p:Publisher)
+WHERE p.name STARTS WITH "N"
+RETURN p.name AS Publisher;
+```
+
+---
+
+## **d. List names of people who gave rating ≥ 3 for ______ book.**
+
+(Example book: *Data Science 101*)
+
+```cypher
+MATCH (r:Reader)-[rev:REVIEWED]->(b:Book {title:"Data Science 101"})
+WHERE rev.rating >= 3
+RETURN r.name AS Reader, rev.rating AS Rating;
+```
+
+

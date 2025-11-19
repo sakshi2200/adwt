@@ -7,52 +7,107 @@ q1
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Management Form</title>
+
     <style>
-        body { background: yellow; font-family: Arial, sans-serif; margin: 0; padding: 0; }
-        h1 { font-size: 6pt; color: red; text-align: center; }
-        .form-container { width: 300px; margin: 20px auto; padding: 20px; background: #00FFFF; border-radius: 10px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input, select, textarea { width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 4px; border: 1px solid #ccc; }
-        .priority-container { display: flex; justify-content: space-between; margin-bottom: 10px; }
-        .button-container { display: flex; justify-content: space-between; }
-        button { width: 48%; padding: 10px; border: none; border-radius: 5px; cursor: pointer; }
-        .submit-btn { background: green; color: white; }
-        .clear-btn { background: blue; color: white; }
+        body {
+            background-color: yellow;
+            font-family: Arial, sans-serif;
+        }
+
+        h2 {
+            font-size: 6pt;
+            color: red;
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        .form-container {
+            width: 450px;
+            margin: 20px auto;
+            background-color: #71e9ea;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        label {
+            display: inline-block;
+            width: 120px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"], input[type="date"], select, textarea {
+            width: 250px;
+            padding: 6px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #888;
+        }
+
+        textarea {
+            height: 60px;
+        }
+
+        .buttons {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .btn-submit {
+            background-color: #34d058;
+            padding: 8px 20px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .btn-clear {
+            background-color: #5ea3ff;
+            padding: 8px 20px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+        }
     </style>
 </head>
+
 <body>
 
-    <h1>Project Management</h1>
-
     <div class="form-container">
+        <h2>Project Management</h2>
+
         <form>
-            <label for="projectName">Project Name</label>
-            <input type="text" id="projectName" placeholder="Project name">
+            <label>Project Name</label>
+            <input type="text" placeholder="project name"><br>
 
-            <label for="assignedTo">Assigned to</label>
-            <select id="assignedTo">
-                <option value="merry">Er Merry Petision</option>
-            </select>
+            <label>Assigned to</label>
+            <select>
+                <option>Er Merry Petision</option>
+                <option>Er John Smith</option>
+                <option>Er Akash Kumar</option>
+            </select><br>
 
-            <label for="startDate">Start Date</label>
-            <input type="date" id="startDate">
+            <label>Start Date</label>
+            <input type="date"><br>
 
-            <label for="endDate">End Date</label>
-            <input type="date" id="endDate">
+            <label>End Date</label>
+            <input type="date"><br>
 
             <label>Priority</label>
-            <div class="priority-container">
-                <input type="radio" id="high" name="priority" value="high"><label for="high">High</label>
-                <input type="radio" id="average" name="priority" value="average"><label for="average">Average</label>
-                <input type="radio" id="low" name="priority" value="low"><label for="low">Low</label>
-            </div>
+            <input type="radio" name="priority"> High
+            <input type="radio" name="priority"> Average
+            <input type="radio" name="priority"> Low
+            <br><br>
 
-            <label for="description">Description</label>
-            <textarea id="description" placeholder="Enter project description"></textarea>
+            <label>Description</label>
+            <textarea></textarea><br>
 
-            <div class="button-container">
-                <button type="submit" class="submit-btn">Submit</button>
-                <button type="reset" class="clear-btn">Clear</button>
+            <div class="buttons">
+                <button type="submit" class="btn-submit">Submit</button>
+                <button type="reset" class="btn-clear">Clear</button>
             </div>
         </form>
     </div>

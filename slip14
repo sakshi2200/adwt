@@ -1,0 +1,40 @@
+q1
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Travel Plan Booking</title>
+</head>
+<body>
+ <h2>Travel Plan Booking Form</h2>
+ <form action="#" method="post">
+ <label>Name:</label>
+ <input type="text" name="name" required><br><br>
+ <label>Address:</label>
+ <textarea name="address" rows="2" required></textarea><br><br>
+ <label>Contact No.:</label>
+ <input type="tel" name="contact" pattern="[0-9]{10}" placeholder="10-digit number"
+required><br><br>
+ <label>Gender:</label>
+ <input type="radio" name="gender" value="Male" required>Male
+ <input type="radio" name="gender" value="Female">Female
+ <input type="radio" name="gender" value="Other">Other<br><br>
+ <label>Preferred Season:</label>
+ <input type="checkbox" name="season" value="Summer">Summer
+ <input type="checkbox" name="season" value="Winter">Winter
+ <input type="checkbox" name="season" value="Monsoon">Monsoon<br><br>
+ <label>Location Type:</label>
+ <select name="location" required>
+ <option value="">--Select--</option>
+ <option value="Beach">Beach</option>
+ <option value="Hill Station">Hill Station</option>
+ <option value="City">City</option>
+ <option value="Adventure">Adventure</option>
+ </select><br><br>
+ <input type="submit" value="Submit">
+ <input type="reset" value="Reset">
+ </form>
+</body>
+</html>

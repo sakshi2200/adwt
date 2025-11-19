@@ -26,19 +26,19 @@ rel="stylesheet">
         </thead> 
         <tbody> 
             <tr> 
-                <td>John</td> 
-                <td>Doe</td> 
-                <td>john.doe@example.com</td> 
+                <td>sakshi</td> 
+                <td>Patil</td> 
+                <td>sakshi@gmail.com</td> 
             </tr> 
             <tr> 
-                <td>Jane</td> 
-                <td>Smith</td> 
-                <td>jane.smith@example.com</td> 
+                <td>nimi</td> 
+                <td>bacchav</td> 
+                <td>nimi@gmail.com</td> 
             </tr> 
             <tr> 
-                <td>Michael</td> 
-                <td>Brown</td> 
-                <td>michael.brown@example.com</td> 
+                <td>sanchi</td> 
+                <td>marathe</td> 
+                <td>marathe@gmail.com</td> 
             </tr> 
         </tbody> 
     </table> 

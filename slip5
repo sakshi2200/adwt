@@ -77,11 +77,52 @@ db.employees.insertMany([
 
 // Inserting documents into the Projects collection
 db.projects.insertMany([
-  { "_id": "proj1", "project_name": "Project A", "project_type": "Development", "start_date": "2024-01-01", "end_date": "2024-06-30", "employee_ids": ["emp1", "emp2", "emp3"] },
-  { "_id": "proj2", "project_name": "Project B", "project_type": "Research", "start_date": "2024-03-01", "end_date": "2024-08-31", "employee_ids": ["emp2", "emp4", "emp5"] },
-  { "_id": "proj3", "project_name": "Project C", "project_type": "Development", "start_date": "2024-04-01", "end_date": "2024-09-30", "employee_ids": ["emp1", "emp4"] },
-  { "_id": "proj4", "project_name": "Project D", "project_type": "Testing", "start_date": "2024-02-15", "end_date": "2024-06-15", "employee_ids": ["emp1", "emp5"] },
-  { "_id": "proj5", "project_name": "Project E", "project_type": "Development", "start_date": "2024-05-01", "end_date": "2024-12-01", "employee _ids": ["emp3", "emp4"]})
+  { 
+    "_id": "proj1", 
+    "project_name": "Project A", 
+    "project_type": "Development", 
+    "start_date": "2024-01-01", 
+    "end_date": "2024-06-30", 
+    "employee_ids": ["emp1", "emp2", "emp3"] 
+  },
+
+  { 
+    "_id": "proj2", 
+    "project_name": "Project B", 
+    "project_type": "Research", 
+    "start_date": "2024-03-01", 
+    "end_date": "2024-08-31", 
+    "employee_ids": ["emp2", "emp4", "emp5"] 
+  },
+
+  { 
+    "_id": "proj3", 
+    "project_name": "Project C", 
+    "project_type": "Development", 
+    "start_date": "2024-04-01", 
+    "end_date": "2024-09-30", 
+    "employee_ids": ["emp1", "emp4"] 
+  },
+
+  { 
+    "_id": "proj4", 
+    "project_name": "Project D", 
+    "project_type": "Testing", 
+    "start_date": "2024-02-15", 
+    "end_date": "2024-06-15", 
+    "employee_ids": ["emp1", "emp5"] 
+  },
+
+  { 
+    "_id": "proj5", 
+    "project_name": "Project E", 
+    "project_type": "Development", 
+    "start_date": "2024-05-01", 
+    "end_date": "2024-12-01", 
+    "employee_ids": ["emp3", "emp4"] 
+  }
+]);
+
 A.	List all names of projects where Project_type =…..  
   db.projects.find({ "project_type": "Development" }, { "project_name":                 1, "_id": 0 })      
 
@@ -89,12 +130,31 @@ B.	  List all the projects with duration greater than 3 months
 db.projects.find({
   $expr: {
     $gt: [
-      { $subtract: [ { $dateFromString: { dateString: "$end_date" } }, { $dateFromString: { dateString: "$start_date" } } ] },
-      7884000000  )   ]  }})            
+      {
+        $subtract: [
+          { $dateFromString: { dateString: "$end_date" } },
+          { $dateFromString: { dateString: "$start_date" } }
+        ]
+      },
+      7884000000   // duration in milliseconds
+    ]
+  }
+});
+           
 C.	Count no. of employees working on ……..project
 db.projects.aggregate([
-  { $match: { "project_name": "Project A" } },
-  { $project: { _id: 0, project_name: 1, employee_count: { $size: "$employee_ids" } } }])
+  { 
+    $match: { project_name: "Project A" } 
+  },
+  { 
+    $project: { 
+      _id: 0, 
+      project_name: 1, 
+      employee_count: { $size: "$employee_ids" } 
+    } 
+  }
+]);
+
 D.	List the names of projects on which Mr. Patil is working
 db.projects.find({ "employee_ids": "emp1" }, { "project_name": 1, "_id": 0 })
 

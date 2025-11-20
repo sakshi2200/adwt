@@ -38,114 +38,58 @@ q1
 
 q2
 
- Newspapers Collection (5 documents): 
-{ 
-"_id": 1, 
-"name": "Daily Nashik Times", 
-"language": "Marathi", 
-"publisher_id": 1, 
-"city_id": 1, 
-"sales": 5000 
-}, 
-{ 
-"_id": 2, 
-"name": "Pune Mirror", 
-"language": "English", 
-"publisher_id": 2, 
-"city_id": 2, 
-"sales": 8000 
-}, 
-{ 
-"_id": 3, 
-"name": "Ahmedabad Chronicle", 
-"language": "Gujarati", 
-"publisher_id": 3, 
-"city_id": 3, 
-"sales": 12000 
-}, 
-{ 
-"_id": 4, 
-"name": "Mumbai Express", 
-"language": "Hindi", 
-"publisher_id": 1, 
-"city_id": 4, 
-"sales": 15000 
-}, 
-{ 
-"_id": 5, 
-"name": "Nashik Dainik", 
-"language": "Marathi", 
-"publisher_id": 4, 
-"city_id": 1, 
-"sales": 7000 
-} 
-Publishers Collection (5 documents): 
-{ 
-"_id": 1, 
-"name": "Maharashtra Media", 
-"state": "Maharashtra" 
-}, 
-{ 
-"_id": 2, 
-"name": "Pune Press", 
-"state": "Maharashtra" 
-}, 
-{ 
-"_id": 3, 
-"name": "Gujarat News Corp", 
-"state": "Gujarat" 
-}, 
-{ 
-"_id": 4, 
-"name": "Nashik Publishing House", 
-"state": "Maharashtra" 
-}, 
-{ 
-} 
-"_id": 5, 
-"name": "Surat Daily", 
-"state": "Gujarat" 
-Cities Collection (5 documents): 
-{ 
-"_id": 1, 
-"name": "Nashik", 
-"state": "Maharashtra" 
-}, 
-{ 
-"_id": 2, 
-"name": "Pune", 
-"state": "Maharashtra" 
-}, 
-{ 
-"_id": 3, 
-"name": "Ahmedabad", 
-"state": "Gujarat" 
-}, 
-{ 
-"_id": 4, 
-"name": "Mumbai", 
-"state": "Maharashtra" 
-}, 
-{ 
-} 
-"_id": 5, 
-"name": "Surat", 
-"state": "Gujarat" 
-List all newspapers available in Nashik city 
-db.newspapers.find({ 
-"city_id": (db.cities.findOne({"name": "Nashik"}))._id 
-}) 
-List all newspapers of Marathi language 
-db.newspapers.find({ 
-"language": "Marathi" 
-}) 
-Count the number of publishers in the Gujarat state 
-db.publishers.count({ 
-"state": "Gujarat" 
-}) 
-Write a cursor to show newspapers with the highest sale in Maharashtra State 
-db.newspapers.find({ 
-"city_id": {  
-$in: db.cities.find({ "state": "Maharashtra" }).map(city => city._id) 
-} 
-}).sort({"sales": -1}).limit(1)
+db.cities.insertMany([
+  { _id: 1, city_name: "Nashik", state: "Maharashtra" },
+  { _id: 2, city_name: "Pune", state: "Maharashtra" },
+  { _id: 3, city_name: "Ahmedabad", state: "Gujarat" },
+  { _id: 4, city_name: "Mumbai", state: "Maharashtra" },
+  { _id: 5, city_name: "Surat", state: "Gujarat" }
+]);
+
+
+
+db.publishers.insertMany([
+  { _id: 1, name: "Lokmat Publications", state: "Maharashtra" },
+  { _id: 2, name: "Sakal Media", state: "Maharashtra" },
+  { _id: 3, name: "Gujarat Press", state: "Gujarat" },
+  { _id: 4, name: "Dainik Bhaskar", state: "Madhya Pradesh" },
+  { _id: 5, name: "Surat Media House", state: "Gujarat" }
+]);
+
+
+
+db.newspapers.insertMany([
+  { _id: 1, name: "Daily Nashik Times", language: "Marathi", publisher_id: 1, city_id: 1, sales: 5000 },
+  { _id: 2, name: "Pune Mirror", language: "English", publisher_id: 2, city_id: 2, sales: 8000 },
+  { _id: 3, name: "Ahmedabad Chronicle", language: "Gujarati", publisher_id: 3, city_id: 3, sales: 12000 },
+  { _id: 4, name: "Mumbai Express", language: "Hindi", publisher_id: 1, city_id: 4, sales: 15000 },
+  { _id: 5, name: "Nashik Dainik", language: "Marathi", publisher_id: 4, city_id: 1, sales: 7000 }
+]);
+
+
+a]
+db.newspapers.aggregate([
+  { $lookup: {
+        from: "cities",
+        localField: "city_id",
+        foreignField: "_id",
+        as: "city"
+  }},
+  { $match: { "city.city_name": "Nashik" } },
+  { $project: { name: 1, language: 1, sales: 1 } }
+]);
+
+
+b]db.newspapers.find({ language: "Marathi" });
+c]db.publishers.countDocuments({ state: "Gujarat" });
+d]var cursor = db.newspapers.aggregate([
+  { $lookup: {
+        from: "cities",
+        localField: "city_id",
+        foreignField: "_id",
+        as: "city"
+  }},
+  { $match: { "city.state": "Maharashtra" } },
+  { $sort: { sales: -1 } },   // highest sales first
+  { $limit: 1 }               // highest selling newspaper
+]);

@@ -88,13 +88,26 @@ Date("2023-05-10"), bill_amount: 60000 }] }
 ]); 
 Step 3: Queries 
 a. List the names of products whose warranty period is one year 
-db.products.find({ warranty_period: 1 }).forEach(product => { 
-print("Product Name: " + product.name); 
-}); 
-b. List the customers who made purchases on “15/08/2023” 
-db.customers.find({ "purchases.purchase_date": new Date("2023-08-15") }).forEach(customer => { 
-print("Customer Name: " + customer.name + ", City: " + customer.city); 
-}); 
+db.items.find({
+  $or: [
+    { status: "B" },
+    { 
+      $and: [
+        { quantity: { $lt: 50 } },
+        { height: { $gt: 8 } }
+      ]
+    }
+  ]
+}).forEach(item => {
+  print(
+    "Item Name: " + item.name +
+    ", Status: " + item.status +
+    ", Quantity: " + item.quantity +
+    ", Height: " + item.height
+  );
+});
+
+
 c. Display the names of products with the brand which has the highest rating 
 var highestRatedBrand = db.brands.find().sort({ average_rating: -1 }).limit(1).toArray()[0]; 
 db.products.find({ brand_id: highestRatedBrand._id }).forEach(product => { 

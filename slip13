@@ -199,14 +199,18 @@ db.competitions.find().forEach(competition => {
     }); 
 }); 
 d. Display students from class 'FY' who participated in 'E-Rangoli' competition 
-var eRangoliCompetition = db.competitions.findOne({ name: "E-Rangoli" }); 
- 
-db.students.find({ class: "FY", _id: { $in: db.participation.find({ competition_id: eRangoliCompetition._id 
-}).map(p => p.student_id) } }) 
-.forEach(student => { 
-    print("Student Name: " + student.name + ", Class: " + student.class); 
-});
 
+var eRangoliCompetition = db.competitions.findOne({ name: "E-Rangoli" });
+var studentIds = db.participation.find(
+    { competition_id: eRangoliCompetition._id },
+    { student_id: 1, _id: 0 }
+).toArray().map(p => p.student_id);
+db.students.find({
+    class: "FY",
+    _id: { $in: studentIds }
+}).forEach(student => {
+    print("Student Name: " + student.name + ", Class: " + student.class);
+});
 
 
 

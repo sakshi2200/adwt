@@ -79,15 +79,25 @@ print("Item Name: " + item.name + ", Tags: " + item.tags);
 }); 
 c. List all items having status equal to “B” or having quantity less than 50 and height of the product 
 should be greater than 8 
-db.items.find({ 
-$or: [ 
-{ status: "B" }, 
-{ $and: [{ quantity: { $lt: 50 } }, { height: { $gt: 8 } }] } 
-] 
-}).forEach(item => { 
-print("Item Name: " + item.name + ", Status: " + item.status + ", Quantity: " + item.quantity + ", 
-Height: " + item.height); 
-}); 
+db.items.find({
+  $or: [
+    { status: "B" },
+    { 
+      $and: [
+        { quantity: { $lt: 50 } },
+        { height: { $gt: 8 } }
+      ]
+    }
+  ]
+}).forEach(item => {
+  print(
+    "Item Name: " + item.name +
+    ", Status: " + item.status +
+    ", Quantity: " + item.quantity +
+    ", Height: " + item.height
+  );
+});
+
 d. Find all warehouses that keep item “Planner” and having in-stock quantity less than 20 
 var plannerItem = db.items.findOne({ name: "Planner" }); 
 db.warehouses.find({ 

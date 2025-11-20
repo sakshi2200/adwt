@@ -155,190 +155,76 @@ q1
 
 q2
 
-{
-  "_id": 1,
-  "name": "John Doe",
-  "address": "123 Elm St, Springfield",
-  "email": "johndoe@example.com",
-  "phone": "1234567890",
-  "policies": [
-    { "policy_id": 1, "policy_name": "Komal Jeevan", "company": "XYZ Insurance", "premium_amount": 5000, "policy_type": "Yearly", "duration": 12, "start_date": "2023-01-01", "end_date": "2024-01-01", "benefits": "Life Cover" }
-  ]
-}
+db.companies.insertMany([
+  { _id: 1, company_name: "LIC", branch: "Mumbai" },
+  { _id: 2, company_name: "HDFC Life", branch: "Pune" },
+  { _id: 3, company_name: "SBI Life", branch: "Nashik" },
+  { _id: 4, company_name: "Kotak Life", branch: "Nagpur" },
+  { _id: 5, company_name: "ICICI Prudential", branch: "Delhi" }
+]);
 
-{
-  "_id": 2,
-  "name": "Jane Smith",
-  "address": "456 Maple Rd, Springfield",
-  "email": "janesmith@example.com",
-  "phone": "9876543210",
-  "policies": [
-    { "policy_id": 2, "policy_name": "Komal Jeevan", "company": "ABC Insurance", "premium_amount": 4500, "policy_type": "Monthly", "duration": 1, "start_date": "2023-02-01", "end_date": "2023-02-28", "benefits": "Health Cover" }
-  ]
-}
+db.policies.insertMany([
+  { _id: 1, policy_name: "Komal Jeevan", type: "Monthly", premium: 1200, company_id: 1 },
+  { _id: 2, policy_name: "Jeevan Anand", type: "Yearly", premium: 15000, company_id: 2 },
+  { _id: 3, policy_name: "Health Plus", type: "Half Yearly", premium: 8000, company_id: 3 },
+  { _id: 4, policy_name: "Child Future", type: "Monthly", premium: 1000, company_id: 1 },
+  { _id: 5, policy_name: "Secure Life", type: "Half Yearly", premium: 7000, company_id: 4 }
+]);
 
-{
-  "_id": 3,
-  "name": "Alice Johnson",
-  "address": "789 Oak St, Springfield",
-  "email": "alicej@example.com",
-  "phone": "1112233445",
-  "policies": [
-    { "policy_id": 3, "policy_name": "Komal Jeevan", "company": "XYZ Insurance", "premium_amount": 6000, "policy_type": "Yearly", "duration": 12, "start_date": "2023-03-01", "end_date": "2024-03-01", "benefits": "Life Cover" },
-    { "policy_id": 4, "policy_name": "Health Shield", "company": "ABC Insurance", "premium_amount": 2000, "policy_type": "Monthly", "duration": 1, "start_date": "2023-04-01", "end_date": "2023-04-30", "benefits": "Health Cover" }
-  ]
-}
 
-{
-  "_id": 4,
-  "name": "Bob Brown",
-  "address": "321 Pine St, Springfield",
-  "email": "bobbrown@example.com",
-  "phone": "2233445566",
-  "policies": [
-    { "policy_id": 5, "policy_name": "Komal Jeevan", "company": "XYZ Insurance", "premium_amount": 7000, "policy_type": "Half Yearly", "duration": 6, "start_date": "2023-05-01", "end_date": "2023-10-31", "benefits": "Health Cover" }
-  ]
-}
+db.customers.insertMany([
+  { _id: 1, name: "Aarav", age: 30, city: "Pune", policy_ids: [1, 3] },
+  { _id: 2, name: "Sakshi", age: 28, city: "Nashik", policy_ids: [2] },
+  { _id: 3, name: "Rohit", age: 35, city: "Mumbai", policy_ids: [1, 4] },
+  { _id: 4, name: "Komal", age: 40, city: "Nagpur", policy_ids: [5] },
+  { _id: 5, name: "Neha", age: 32, city: "Pune", policy_ids: [3, 4] }
+]);
 
-{
-  "_id": 5,
-  "name": "Charlie Davis",
-  "address": "654 Birch Ln, Springfield",
-  "email": "charliedavis@example.com",
-  "phone": "3344556677",
-  "policies": [
-    { "policy_id": 6, "policy_name": "Komal Jeevan", "company": "DEF Insurance", "premium_amount": 8000, "policy_type": "Yearly", "duration": 12, "start_date": "2023-06-01", "end_date": "2024-06-01", "benefits": "Life Cover" }
-  ]
-}
-{
-  "_id": 1,
-  "policy_name": "Komal Jeevan",
-  "company": "XYZ Insurance",
-  "premium_amount": 5000,
-  "policy_type": "Yearly",
-  "duration": 12,
-  "start_date": "2023-01-01",
-  "end_date": "2024-01-01",
-  "benefits": "Life Cover",
-  "customer_id": 1
-}
 
-{
-  "_id": 2,
-  "policy_name": "Komal Jeevan",
-  "company": "ABC Insurance",
-  "premium_amount": 4500,
-  "policy_type": "Monthly",
-  "duration": 1,
-  "start_date": "2023-02-01",
-  "end_date": "2023-02-28",
-  "benefits": "Health Cover",
-  "customer_id": 2
-}
-
-{
-  "_id": 3,
-  "policy_name": "Komal Jeevan",
-  "company": "XYZ Insurance",
-  "premium_amount": 6000,
-  "policy_type": "Yearly",
-  "duration": 12,
-  "start_date": "2023-03-01",
-  "end_date": "2024-03-01",
-  "benefits": "Life Cover",
-  "customer_id": 3
-}
-
-{
-  "_id": 4,
-  "policy_name": "Health Shield",
-  "company": "ABC Insurance",
-  "premium_amount": 2000,
-  "policy_type": "Monthly",
-  "duration": 1,
-  "start_date": "2023-04-01",
-  "end_date": "2023-04-30",
-  "benefits": "Health Cover",
-  "customer_id": 3
-}
-
-{
-  "_id": 5,
-  "policy_name": "Komal Jeevan",
-  "company": "XYZ Insurance",
-  "premium_amount": 7000,
-  "policy_type": "Half Yearly",
-  "duration": 6,
-  "start_date": "2023-05-01",
-  "end_date": "2023-10-31",
-  "benefits": "Health Cover",
-  "customer_id": 4
-}
-
-{
-  "_id": 6,
-  "policy_name": "Komal Jeevan",
-  "company": "DEF Insurance",
-  "premium_amount": 8000,
-  "policy_type": "Yearly",
-  "duration": 12,
-  "start_date": "2023-06-01",
-  "end_date": "2024-06-01",
-  "benefits": "Life Cover",
-  "customer_id": 5
-}
+a]
 
 db.customers.aggregate([
-    {
-        $lookup: {
-            from: "policies",
-            localField: "_id",
-            foreignField: "customer_id",
-            as: "customer_policies"
-        }
-    },
-    {
-        $unwind: "$customer_policies"
-    },
-    {
-        $match: {
-            "customer_policies.policy_name": "Komal Jeevan"
-        }
-    },
-    {
-        $project: {
-            name: 1,
-            email: 1,
-            phone: 1,
-            "customer_policies.policy_name": 1,
-            "customer_policies.premium_amount": 1
-        }
+  { 
+    $lookup: {
+      from: "policies",
+      localField: "policy_ids",
+      foreignField: "_id",
+      as: "policy_details"
     }
-])
-db.policies.aggregate([
-    {
-        $group: {
-            _id: null,
-            averagePremium: { $avg: "$premium_amount" }
-        }
-    }
-])
-db.policies.updateMany(
-    { "policy_type": "Monthly" },
-    [
-        { $set: { "premium_amount": { $multiply: ["$premium_amount", 1.05] } } }
-    ]
-)
+  },
+  { $match: { "policy_details.policy_name": "Komal Jeevan" } }
+]);
 
-db.policies.aggregate([
-    {
-        $match: {
-            policy_type: "Half Yearly"
-        }
-    },
-    {
-        $group: {
-            _id: "$customer_id",
-            count: { $sum: 1 }
-        }
+
+b]db.policies.aggregate([
+  { $group: { _id: null, avg_premium: { $avg: "$premium" } } }
+]);
+
+
+c]db.policies.updateMany(
+  { type: "Monthly" },
+  [
+    { 
+      $set: { 
+        premium: { $multiply: ["$premium", 1.05] } 
+      }
+    }
+  ]
+);
+d]db.customers.aggregate([
+  { 
+    $lookup: {
+      from: "policies",
+      localField: "policy_ids",
+      foreignField: "_id",
+      as: "policy_details"
+    }
+  },
+  { $match: { "policy_details.type": "Half Yearly" } },
+  { $count: "number_of_customers" }
+]);
+
+
+
+
 
